@@ -16,14 +16,12 @@ class Kategori extends Model
 
     protected $table = 'kategori';
 
-    protected $primaryKey = 'id_kategori';
-
     protected $fillable = [
         'nama_kategori',
     ];
 
     public function aspirasi()
     {
-        return $this->hasMany(Aspirasi::class, 'id_kategori', 'id_kategori');
+        return $this->hasMany(Aspirasi::class, 'id_kategori', 'id');
     }
 }

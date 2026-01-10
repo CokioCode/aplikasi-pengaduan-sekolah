@@ -11,7 +11,7 @@ class UmpanBalikController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'id_aspirasi' => 'required|exists:aspirasi,id_aspirasi',
+            'id_aspirasi' => 'required|exists:aspirasi,id',
             'isi_umpan_balik' => 'required|string',
         ]);
 

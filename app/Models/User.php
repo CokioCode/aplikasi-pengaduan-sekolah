@@ -23,10 +23,11 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'username',
         'fullname',
-        'password',
+        'username',
         'kelas',
+        'role',
+        'password',
     ];
 
     /**
@@ -53,12 +54,12 @@ class User extends Authenticatable
 
     public function aspirasi()
     {
-        return $this->hasMany(Aspirasi::class, 'id_user', 'id_user');
+        return $this->hasMany(Aspirasi::class, 'id_user', 'id');
     }
 
     public function umpanBalik()
     {
-        return $this->hasMany(UmpanBalik::class, 'id_user', 'id_user');
+        return $this->hasMany(UmpanBalik::class, 'id_user', 'id');
     }
 
     public function isAdmin()

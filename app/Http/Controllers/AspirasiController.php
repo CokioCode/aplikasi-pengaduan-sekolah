@@ -19,7 +19,7 @@ class AspirasiController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'id_kategori' => 'required|exists:kategori,id_kategori',
+            'id_kategori' => 'required|exists:kategori,id',
             'judul_aspirasi' => 'required|string|max:255',
             'isi_aspirasi' => 'required|string',
         ]);
@@ -37,14 +37,25 @@ class AspirasiController extends Controller
             ->with('success', 'Aspirasi berhasil dikirim!');
     }
 
-    public function indexSiswa()
+    public function indexSiswa(Request $request)
     {
-        $aspirasi = Aspirasi::with(['kategori', 'umpanBalik', 'progresPerbaikan'])
-            ->where('id_user', Auth::id())
-            ->latest('tanggal_aspirasi')
-            ->get();
+        $statistics = [
+            'total' => Aspirasi::where('id_user', Auth::id())->count(),
+            'baru' => Aspirasi::where('id_user', Auth::id())->where('status', 'baru')->count(),
+            'diproses' => Aspirasi::where('id_user', Auth::id())->where('status', 'diproses')->count(),
+            'selesai' => Aspirasi::where('id_user', Auth::id())->where('status', 'selesai')->count(),
+        ];
 
-        return view('siswa.aspirasi.index', compact('aspirasi'));
+        $query = Aspirasi::with(['kategori', 'umpanBalik', 'progresPerbaikan'])
+            ->where('id_user', Auth::id());
+
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
+        $aspirasi = $query->latest('tanggal_aspirasi')->get();
+
+        return view('siswa.aspirasi.index', compact('aspirasi', 'statistics'));
     }
 
     public function indexAdmin(Request $request)

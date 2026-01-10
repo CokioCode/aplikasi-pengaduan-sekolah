@@ -16,8 +16,6 @@ class ProgresPerbaikan extends Model
 
     protected $table = 'progres_perbaikan';
 
-    protected $primaryKey = 'id_progres';
-
     protected $fillable = [
         'id_aspirasi',
         'keterangan_progres',
@@ -31,6 +29,6 @@ class ProgresPerbaikan extends Model
 
     public function aspirasi()
     {
-        return $this->belongsTo(Aspirasi::class, 'id_aspirasi', 'id_aspirasi');
+        return $this->belongsTo(Aspirasi::class, 'id_aspirasi', 'id');
     }
 }

@@ -16,8 +16,6 @@ class UmpanBalik extends Model
 
     protected $table = 'umpan_balik';
 
-    protected $primaryKey = 'id_umpan_balik';
-
     protected $fillable = [
         'id_aspirasi',
         'id_user',
@@ -31,11 +29,11 @@ class UmpanBalik extends Model
 
     public function aspirasi()
     {
-        return $this->belongsTo(Aspirasi::class, 'id_aspirasi', 'id_aspirasi');
+        return $this->belongsTo(Aspirasi::class, 'id_aspirasi', 'id');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'id_user', 'id_user');
+        return $this->belongsTo(User::class, 'id_user', 'id');
     }
 }

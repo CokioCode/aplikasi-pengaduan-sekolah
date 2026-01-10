@@ -16,8 +16,6 @@ class Aspirasi extends Model
 
     protected $table = 'aspirasi';
 
-    protected $primaryKey = 'id_aspirasi';
-
     protected $fillable = [
         'id_user',
         'id_kategori',
@@ -33,22 +31,22 @@ class Aspirasi extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'id_user', 'id_user');
+        return $this->belongsTo(User::class, 'id_user', 'id');
     }
 
     public function kategori()
     {
-        return $this->belongsTo(Kategori::class, 'id_kategori', 'id_kategori');
+        return $this->belongsTo(Kategori::class, 'id_kategori', 'id');
     }
 
     public function umpanBalik()
     {
-        return $this->hasMany(UmpanBalik::class, 'id_aspirasi', 'id_aspirasi');
+        return $this->hasMany(UmpanBalik::class, 'id_aspirasi', 'id');
     }
 
     public function progresPerbaikan()
     {
-        return $this->hasMany(ProgresPerbaikan::class, 'id_aspirasi', 'id_aspirasi');
+        return $this->hasMany(ProgresPerbaikan::class, 'id_aspirasi', 'id');
     }
 
     public function scopeByStatus($query, $status)

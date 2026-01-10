@@ -10,7 +10,7 @@ class ProgresPerbaikanController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'id_aspirasi' => 'required|exists:aspirasi,id_aspirasi',
+            'id_aspirasi' => 'required|exists:aspirasi,id',
             'keterangan_progres' => 'required|string',
             'status' => 'required|string|max:255',
         ]);
