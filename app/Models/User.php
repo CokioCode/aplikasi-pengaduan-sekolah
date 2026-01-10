@@ -13,6 +13,10 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, HasUuids, Notifiable;
 
+    protected $keyType = 'string';
+
+    public $incrementing = false;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -45,5 +49,25 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function aspirasi()
+    {
+        return $this->hasMany(Aspirasi::class, 'id_user', 'id_user');
+    }
+
+    public function umpanBalik()
+    {
+        return $this->hasMany(UmpanBalik::class, 'id_user', 'id_user');
+    }
+
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isSiswa()
+    {
+        return $this->role === 'siswa';
     }
 }
