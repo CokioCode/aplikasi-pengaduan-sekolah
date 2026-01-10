@@ -31,7 +31,7 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'fullname' => ['required', 'string', 'max:255'],
-            'usename' => ['required', 'string', 'max:255', 'unique:users,username'],
+            'username' => ['required', 'string', 'max:255', 'unique:users,username'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'kelas' => ['required', 'string', 'max:50'],
         ]);
@@ -44,12 +44,10 @@ class RegisteredUserController extends Controller
             'kelas' => $request->kelas,
         ]);
 
-        dd($user);
-
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(route('login', absolute: false));
+        return redirect(route('siswa.dashboard', absolute: false));
     }
 }
