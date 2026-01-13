@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AspirasiController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgresPerbaikanController;
 use App\Http\Controllers\UmpanBalikController;
@@ -13,6 +14,13 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'adminDashboard'])->name('dashboard');
+
+    Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori.index');
+    Route::get('/kategori/create', [KategoriController::class, 'create'])->name('kategori.create');
+    Route::post('/kategori', [KategoriController::class, 'store'])->name('kategori.store');
+    Route::get('/kategori/{id}/edit', [KategoriController::class, 'edit'])->name('kategori.edit');
+    Route::patch('/kategori/{id}', [KategoriController::class, 'update'])->name('kategori.update');
+    Route::delete('/kategori/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
 
     Route::get('/aspirasi', [AspirasiController::class, 'indexAdmin'])->name('aspirasi.index');
     Route::get('/aspirasi/{id}', [AspirasiController::class, 'show'])->name('aspirasi.show');

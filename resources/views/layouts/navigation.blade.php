@@ -15,6 +15,9 @@
                             <x-nav-link :href="route('admin.aspirasi.index')" :active="request()->routeIs('admin.aspirasi.*')">
                                 Kelola Aspirasi
                             </x-nav-link>
+                            <x-nav-link :href="route('admin.kategori.index')" :active="request()->routeIs('admin.kategori.*')">
+                                Kelola Kategori
+                            </x-nav-link>
                         @else
                             <x-nav-link :href="route('siswa.dashboard')" :active="request()->routeIs('siswa.dashboard')">
                                 Dashboard
