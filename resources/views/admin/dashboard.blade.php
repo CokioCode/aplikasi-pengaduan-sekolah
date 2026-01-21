@@ -50,7 +50,7 @@
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm">
                                             {{ $aspirasi->tanggal_aspirasi->format('d/m/Y') }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $aspirasi->user->nama_user }}
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $aspirasi->user->fullname }}
                                         </td>
                                         <td class="px-6 py-4 text-sm">{{ Str::limit($aspirasi->judul_aspirasi, 40) }}
                                         </td>

@@ -79,7 +79,7 @@
                                             {{ $aspirasi->firstItem() + $index }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm">
                                             {{ $item->tanggal_aspirasi->format('d/m/Y') }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $item->user->nama_user }}
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $item->user->fullname }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $item->user->kelas }}</td>
                                         <td class="px-6 py-4 text-sm">{{ Str::limit($item->judul_aspirasi, 40) }}</td>
