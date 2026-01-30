@@ -1,55 +1,133 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+    <div class="text-center mb-6">
+        <h2 class="text-2xl font-bold text-base-content">{{ __('Create Account') }}</h2>
+        <p class="text-base-content/70 mt-2">{{ __('Join us today') }}</p>
+    </div>
+
+    <form method="POST" action="{{ route('register') }}" class="space-y-4">
         @csrf
 
         <!-- Nama Lengkap -->
-        <div>
-            <x-input-label for="fullname" :value="__('Fullname')" />
-            <x-text-input id="fullname" class="block mt-1 w-full" type="text" name="fullname" :value="old('fullname')" required
-                autofocus />
-            <x-input-error :messages="$errors->get('fullname')" class="mt-2" />
+        <div class="form-control">
+            <label class="label" for="fullname">
+                <span class="label-text">{{ __('Fullname') }}</span>
+            </label>
+            <input 
+                id="fullname" 
+                type="text" 
+                name="fullname" 
+                value="{{ old('fullname') }}" 
+                class="input input-bordered w-full @error('fullname') input-error @enderror" 
+                placeholder="{{ __('Enter your full name') }}"
+                required 
+                autofocus 
+            />
+            @error('fullname')
+                <label class="label">
+                    <span class="label-text-alt text-error">{{ $message }}</span>
+                </label>
+            @enderror
         </div>
 
         <!-- Username -->
-        <div class="mt-4">
-            <x-input-label for="username" :value="__('Username')" />
-            <x-text-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')"
-                required />
-            <x-input-error :messages="$errors->get('username')" class="mt-2" />
+        <div class="form-control">
+            <label class="label" for="username">
+                <span class="label-text">{{ __('Username') }}</span>
+            </label>
+            <input 
+                id="username" 
+                type="text" 
+                name="username" 
+                value="{{ old('username') }}" 
+                class="input input-bordered w-full @error('username') input-error @enderror" 
+                placeholder="{{ __('Choose a username') }}"
+                required 
+            />
+            @error('username')
+                <label class="label">
+                    <span class="label-text-alt text-error">{{ $message }}</span>
+                </label>
+            @enderror
         </div>
 
         <!-- Kelas -->
-        <div class="mt-4">
-            <x-input-label for="kelas" :value="__('Kelas')" />
-            <x-text-input id="kelas" class="block mt-1 w-full" type="text" name="kelas" :value="old('kelas')"
-                placeholder="Contoh: XII IPA 1" required />
-            <x-input-error :messages="$errors->get('kelas')" class="mt-2" />
+        <div class="form-control">
+            <label class="label" for="kelas">
+                <span class="label-text">{{ __('Kelas') }}</span>
+            </label>
+            <input 
+                id="kelas" 
+                type="text" 
+                name="kelas" 
+                value="{{ old('kelas') }}" 
+                class="input input-bordered w-full @error('kelas') input-error @enderror" 
+                placeholder="Contoh: XII IPA 1"
+                required 
+            />
+            @error('kelas')
+                <label class="label">
+                    <span class="label-text-alt text-error">{{ $message }}</span>
+                </label>
+            @enderror
         </div>
 
         <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        <div class="form-control">
+            <label class="label" for="password">
+                <span class="label-text">{{ __('Password') }}</span>
+            </label>
+            <input 
+                id="password" 
+                type="password" 
+                name="password" 
+                class="input input-bordered w-full @error('password') input-error @enderror" 
+                placeholder="{{ __('Create a password') }}"
+                required 
+            />
+            @error('password')
+                <label class="label">
+                    <span class="label-text-alt text-error">{{ $message }}</span>
+                </label>
+            @enderror
         </div>
 
         <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-            <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password"
-                name="password_confirmation" required />
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+        <div class="form-control">
+            <label class="label" for="password_confirmation">
+                <span class="label-text">{{ __('Confirm Password') }}</span>
+            </label>
+            <input 
+                id="password_confirmation" 
+                type="password" 
+                name="password_confirmation" 
+                class="input input-bordered w-full @error('password_confirmation') input-error @enderror" 
+                placeholder="{{ __('Confirm your password') }}"
+                required 
+            />
+            @error('password_confirmation')
+                <label class="label">
+                    <span class="label-text-alt text-error">{{ $message }}</span>
+                </label>
+            @enderror
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none"
-                href="{{ route('login') }}">
+        <!-- Actions -->
+        <div class="form-control mt-6">
+            <button type="submit" class="btn btn-primary w-full">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+                </svg>
+                {{ __('Register') }}
+            </button>
+        </div>
+
+        <!-- Login Link -->
+        <div class="divider">{{ __('OR') }}</div>
+        
+        <div class="text-center">
+            <a href="{{ route('login') }}" class="link link-primary">
                 {{ __('Sudah punya akun?') }}
             </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
         </div>
     </form>
 </x-guest-layout>
